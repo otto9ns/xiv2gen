@@ -46,7 +46,12 @@ if args.generate_password:
 
       print(f"Ваша пасс-фраза: {password}")
 else:
-      password = input("Введите вашу пасс-фразу: ")
+      if os.path.exists("data/password.txt") and os.path.isfile("data/password.txt"):
+            with open("data/password.txt", "r") as file:
+                  password = file.read()
+      
+      else:
+            password = input("Введите вашу пасс-фразу: ")
 
 if not os.path.exists("data/TOTP.key") or not os.path.isfile("data/TOTP.key"):
       setup(password)
