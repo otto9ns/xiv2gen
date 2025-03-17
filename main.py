@@ -1,4 +1,5 @@
 import pyotp, requests, os, base64, argparse
+from getpass import getpass
 from crypto_utils import *
 
 def setup(password):
@@ -51,7 +52,7 @@ else:
                   password = file.read()
       
       else:
-            password = input("Введите вашу пасс-фразу: ")
+            password = getpass(prompt="Введите вашу пасс-фразу: ")
 
 if not os.path.exists("data/TOTP.key") or not os.path.isfile("data/TOTP.key"):
       setup(password)
